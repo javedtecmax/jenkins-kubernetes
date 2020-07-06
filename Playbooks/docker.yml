@@ -1,0 +1,19 @@
+---
+ - name: building the docker image
+   hosts: localhost
+   tasks:
+     - name: build docker image
+       docker_volume:
+         name: kubernetesvolume
+     - name: "create docker container"
+       docker_container:
+         name: mycontainer
+         image: kubernetescontainer:1.3
+         volumes:
+           - kubernetesvolume
+         published_ports:
+           - "8888:8080"
+     
+            
+
+
